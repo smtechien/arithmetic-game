@@ -1,14 +1,23 @@
 import type { Question } from "$lib/types/question";
-import type { Operand } from "$lib/types/operand";
+import { generateOperand } from "./generateOperand";
+import { generateOperator } from "./generateOperator";
 
-export function generateQuestion(firstOperand: Operand, secondOperand: Operand, operator: string):Question {
+export function generateQuestion():Question {
+
+	const operator = generateOperator();
+	const firstOperand = generateOperand(operator.firstOperandRules);
+	const secondOperand = generateOperand(
+		operator.secondOperandRules,
+		firstOperand.value,
+		operator.name
+	);
 
   const firstOperandValue:number = firstOperand.isNegative ? firstOperand.value * -1 : firstOperand.value;
   const secondOperandValue:number = secondOperand.isNegative ? secondOperand.value * -1 : secondOperand.value;
 
   let answer: number;
 
-  switch (operator) {
+  switch (operator.name) {
     case "add":
       answer = firstOperandValue + secondOperandValue;
       break;
@@ -27,9 +36,9 @@ export function generateQuestion(firstOperand: Operand, secondOperand: Operand, 
   }
 
   return {
-    firstOperand: firstOperand.value,
-    secondOperand: secondOperand.value,
-    operator: operator,
+    firstOperand: firstOperandValue,
+    secondOperand: secondOperandValue,
+    operator: operator.symbol,
     answer: answer,
   }
 

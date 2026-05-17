@@ -1,5 +1,5 @@
 import type { OperandRules } from "./operand_rules";
-export type OperatorSymbol = '+' | '-' | '*' | '/';
+export type OperatorSymbol = '&plus;' | '&minus;' | '&times;' | '&divide;';
 
 export interface Operator {
   name: string;

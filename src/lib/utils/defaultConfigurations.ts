@@ -4,56 +4,56 @@ export const CONFIG:Configurations = {
   activeOperator : [
     {
        name: 'add',
-       symbol: '+',
+       symbol: '&plus;',
        firstOperandRules: {
-         max: 1000,
+         max: 10,
          min: 0,
          negativeNumber: true,
        },
        secondOperandRules: {
-         max: 1000,
+         max: 10,
          min: 0,
          negativeNumber: true,
        }
     },
     {
        name: 'subtract',
-       symbol: '-',
+       symbol: '&minus;',
        firstOperandRules: {
-         max: 1000,
+         max: 10,
          min: 0,
          negativeNumber: true,
        },
        secondOperandRules: {
-         max: 1000,
+         max: 10,
          min: 0,
          negativeNumber: true,
        }
     },
     {
        name: 'multiply',
-       symbol: '*',
+       symbol: '&times;',
        firstOperandRules: {
-         max: 100,
+         max: 10,
          min: 0,
          negativeNumber: true,
        },
        secondOperandRules: {
-         max: 100,
+         max: 10,
          min: 0,
          negativeNumber: true,
        }
     },
     {
        name: 'divide',
-       symbol: '/',
+       symbol: '&divide;',
        firstOperandRules: {
-         max: 1000,
-         min: 0,
+         max: 10,
+         min: 1,
          negativeNumber: true,
        },
        secondOperandRules: {
-         max: 1000,
+         max: 10,
          min: 0,
          negativeNumber: true,
        }

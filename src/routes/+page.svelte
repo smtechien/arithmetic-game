@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import QuestionAnswer from '$lib/components/QuestionAnswer.svelte';
+	import FeedbackOverlay from '$lib/components/FeedbackOverlay.svelte';
+	let feedbackVisibility = $state(false);
+	let correctness = $state(false);
+</script>
+
+<QuestionAnswer bind:feedbackVisibility bind:correctness />
+
+{#if feedbackVisibility}
+	<FeedbackOverlay correct={correctness} bind:feedbackVisibility />
+{/if}
