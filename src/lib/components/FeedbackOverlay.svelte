@@ -14,11 +14,11 @@
 {#if visible}
 	{#if correct}
 		<div class="fixed inset-0 z-10 grid place-items-center">
-			<span class="text-2xl font-bold text-green-900">correct</span>
+			<span class="text-[300px]/0 font-bold text-green-900/60">&check;</span>
 		</div>
 	{:else}
 		<div class="fixed inset-0 z-10 grid place-items-center">
-			<span class="text-2xl font-bold text-red-900">wrong</span>
+			<span class="text-[300px]/0 font-bold text-red-900/60">&cross;</span>
 		</div>
 	{/if}
 {/if}

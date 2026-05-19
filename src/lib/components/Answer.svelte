@@ -33,7 +33,7 @@
 
 <form onsubmit={checkAnswer}>
 	<input
-		class="border-0 border-b-2 focus:border-red-500 focus:ring-0 focus:outline-0"
+		class="border-0 border-b-2 focus:border-blue-500 focus:ring-0 focus:outline-0"
 		id="answer"
 		type="number"
 		bind:value
