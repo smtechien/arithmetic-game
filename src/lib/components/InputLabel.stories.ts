@@ -1,20 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Question from './Question.svelte';
+import InputLabel from './InputLabel.svelte';
 
 const meta = {
-  title: 'Organisms/Question',
-  component: Question,
+  title: 'Atoms/Input Label',
+  component: InputLabel,
   decorators: [],
   parameters: {},
-} satisfies Meta<typeof Question>;
+} satisfies Meta<typeof InputLabel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   render: (args) => ({
-    Component: Question,
+    Component: InputLabel,
     props: args,
   }),
+  args: {
+    id: 'input_id',
+    content: 'Label Name',
+  }
 };
-

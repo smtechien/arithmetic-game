@@ -1,4 +1,4 @@
 import type { Operator} from "./operator";
-export interface Configurations {
+export interface Configuration {
   activeOperator: Operator[],
 }

@@ -1,27 +1,35 @@
 <script lang="ts">
 	import Operand from '$lib/components/Operand.svelte';
 	import Operator from '$lib/components/Operator.svelte';
+	import { getAllConfig } from '$lib/utils/localStorageConfig';
 	import { generateQuestion } from '$lib/utils/generateQuestion';
+	import { generateOperator } from '$lib/utils/generateOperator';
 
-	const question = generateQuestion();
 	let turn = $state(true);
+	let { answer = $bindable() } = $props();
+
+	let firstOperand = $state(0);
+	let secondOperand = $state(0);
+	let operator = $state('&times;');
 
 	$effect(() => {
-		const turnInterval = setInterval(() => {
-			turn = false;
-		}, 300);
-		return () => {
-			clearInterval(turnInterval);
-		};
+		const activeOperator = getAllConfig();
+		if (activeOperator) {
+			const randomOperator = generateOperator(activeOperator);
+			const question = generateQuestion(randomOperator);
+			({ firstOperand, secondOperand, operator, answer } = question);
+			const turnInterval = setInterval(() => {
+				turn = false;
+			}, 300);
+			return () => {
+				clearInterval(turnInterval);
+			};
+		}
 	});
-
-	// send answer to it parent component
-	let { answer = $bindable() } = $props();
-	answer = question.answer;
 </script>
 
 <div class="basis-full text-5xl">
-	<Operand operand={question.firstOperand} turns={turn} />
-	<Operator operator={question.operator} turns={turn} />
-	<Operand operand={question.secondOperand} turns={turn} />
+	<Operand operand={firstOperand} turns={turn} />
+	<Operator {operator} turns={turn} />
+	<Operand operand={secondOperand} turns={turn} />
 </div>

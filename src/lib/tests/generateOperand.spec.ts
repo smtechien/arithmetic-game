@@ -1,18 +1,16 @@
 import { describe, expect, test } from 'vitest';
 import type { Operand } from '$lib/types/operand';
-import type { Operator } from '$lib/types/operator';
 import type { OperandRules } from '$lib/types/operand_rules';
-import { CONFIG } from '$lib/utils/defaultConfigurations';
+import { addOperator, subtractOperator, multiplyOperator, divideOperator } from '$lib/utils/defaultConfiguration';
 import { generateOperand } from '$lib/utils/generateOperand';
 import { factorizeFirstOperand } from '$lib/utils/factorizeFirstOperand';
 
 describe('Generate First Operand', () => {
 
-  const operandRules:Operator[] = CONFIG.activeOperator;
-  const addRules:OperandRules = operandRules[0].firstOperandRules;
-  const subtractRules:OperandRules = operandRules[1].firstOperandRules;
-  const multiplyRules:OperandRules = operandRules[2].firstOperandRules;
-  const divideRules:OperandRules = operandRules[3].firstOperandRules;
+  const addRules:OperandRules = addOperator.firstOperandRules;
+  const subtractRules:OperandRules = subtractOperator.firstOperandRules;
+  const multiplyRules:OperandRules = multiplyOperator.firstOperandRules;
+  const divideRules:OperandRules = divideOperator.firstOperandRules;
 
   test("Validate first operand's properties", () => {
     const firstOperand:Operand = generateOperand(addRules);
@@ -44,11 +42,10 @@ describe('Generate First Operand', () => {
 
 describe('Generate Second Operand', () => {
 
-  const operandRules:Operator[] = CONFIG.activeOperator;
-  const addRules:OperandRules = operandRules[0].secondOperandRules;
-  const subtractRules:OperandRules = operandRules[1].secondOperandRules;
-  const multiplyRules:OperandRules = operandRules[2].secondOperandRules;
-  const divideRules:OperandRules = operandRules[3].secondOperandRules;
+  const addRules:OperandRules = addOperator.secondOperandRules;
+  const subtractRules:OperandRules = subtractOperator.secondOperandRules;
+  const multiplyRules:OperandRules = multiplyOperator.secondOperandRules;
+  const divideRules:OperandRules = divideOperator.secondOperandRules;
 
   test("Validate second operand's properties", () => {
     const secondOperand:Operand = generateOperand(addRules);

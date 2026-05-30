@@ -1,10 +1,9 @@
 import type { Question } from "$lib/types/question";
+import type { Operator } from "$lib/types/operator";
 import { generateOperand } from "./generateOperand";
-import { generateOperator } from "./generateOperator";
 
-export function generateQuestion():Question {
+export function generateQuestion(operator:Operator):Question {
 
-	const operator = generateOperator();
 	const firstOperand = generateOperand(operator.firstOperandRules);
 	const secondOperand = generateOperand(
 		operator.secondOperandRules,
@@ -41,6 +40,4 @@ export function generateQuestion():Question {
     operator: operator.symbol,
     answer: answer,
   }
-
-
 }

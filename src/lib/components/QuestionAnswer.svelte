@@ -16,9 +16,9 @@
 	}
 </script>
 
-<div class="flex min-h-screen flex-col items-center justify-center gap-5">
-	{#key genQuestion}
+{#key genQuestion}
+	<div class="flex min-h-screen flex-col items-center justify-center gap-5">
 		<Question bind:answer />
 		<Answer {answer} onAnswer={handleAnswerResult} />
-	{/key}
-</div>
+	</div>
+{/key}
