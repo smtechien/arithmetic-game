@@ -50,12 +50,12 @@ export const divideOperator: Operator = {
   symbol: '&divide;',
   firstOperandRules: {
     max: 10,
-    min: 0,
+    min: 1,
     negativeNumber: 'active',
   },
   secondOperandRules: {
     max: 10,
-    min: 0,
+    min: 1,
     negativeNumber: 'active',
   }
  }

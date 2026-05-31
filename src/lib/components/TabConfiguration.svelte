@@ -4,26 +4,32 @@
 	import FormConfigOperator from './FormConfigOperator.svelte';
 	import Button from './Button.svelte';
 	import type { Operator } from '$lib/types/operator';
-	import { setConfig, getConfig } from '$lib/utils/localStorageConfig';
+	import { getConfig } from '$lib/utils/localStorageConfig';
 
 	let { isConfig = $bindable() } = $props();
 	let tabSelection: string = $state('add');
-	let operator = $derived(getConfig(tabSelection));
+	let tabTitle: string = $state('Addition Operator');
+	let submitted = $state(false); // role as key to refresh
+	let operator = $derived(getConfig(tabSelection, submitted));
 
 	function tabSelect(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
 		const id = event.currentTarget.id;
 		switch (id) {
 			case 'tabButton0':
 				tabSelection = 'add';
+				tabTitle = 'Addition Operator';
 				break;
 			case 'tabButton1':
 				tabSelection = 'subtract';
+				tabTitle = 'Subtraction Operator';
 				break;
 			case 'tabButton2':
 				tabSelection = 'multiply';
+				tabTitle = 'Multiplication Operator';
 				break;
 			case 'tabButton3':
 				tabSelection = 'divide';
+				tabTitle = 'Division Operator';
 				break;
 		}
 	}
@@ -39,15 +45,23 @@
 
 {#snippet form(operator: Operator)}
 	<FormConfigOperator
-		title={'Operator ' + operator.name}
+		title={tabTitle}
 		operatorName={operator.name}
+		operatorSymbol={operator.symbol}
 		firstRuleMin={operator.firstOperandRules.min}
 		firstRuleMax={operator.firstOperandRules.max}
 		firstRuleNeg={operator.firstOperandRules.negativeNumber}
 		secondRuleMin={operator.secondOperandRules.min}
 		secondRuleMax={operator.secondOperandRules.max}
 		secondRuleNeg={operator.secondOperandRules.negativeNumber}
-		onSubmit={() => {}}
+		onSubmit={() => {
+			try {
+				// everytime the variable's value changed, it means configuration successfully updated
+				submitted = !submitted;
+			} catch (err) {
+				console.log(err);
+			}
+		}}
 	/>
 {/snippet}
 
@@ -69,8 +83,8 @@
 			<Button type="button" value="close" variant="text" content="&cross; " onclick={closeConfig} />
 		</div>
 		<TabButtonList bind:tabSelection eventHandler={tabSelect} />
-		{#if operator}
+		{#key operator}
 			<TabPanel {form} bind:operator />
-		{/if}
+		{/key}
 	</div>
 {/if}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	let {
 		value = $bindable(),
+		name,
 		placeholder,
 		id,
 		disabled = false,
@@ -15,6 +16,7 @@
 	bind:value
 	required
 	{id}
+	{name}
 	{placeholder}
 	{disabled}
 	{min}

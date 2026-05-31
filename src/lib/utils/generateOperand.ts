@@ -19,7 +19,7 @@ export function generateOperand(rules:OperandRules, firstOperand:number = 0, ope
   const value = random.integer(rules.min, rules.max);
 
   // condition ? expressionIfTrue : expressionIfFalse
-  const isNegative = rules.negativeNumber ? random.bool() : false;
+  const isNegative = (rules.negativeNumber  == 'active') ? random.bool() : false;
 
   return {
     value: value,

@@ -29,25 +29,22 @@ export function getAllConfig():Operator[]{
       const activeOperator = [addConfig, subtractConfig, multiplyConfig, divideConfig];
       return activeOperator;
     } else {
-      console.log('Configurations not found. Added default configuration ');
       setDefaultConfig();
       return activeOperator;
     }
   } catch(error) {
-    console.log('Configurations not found. Added default configuration ');
     setDefaultConfig();
     return activeOperator;
   }
 }
 
 
-export function getConfig(name: string): Operator|null{
+export function getConfig(name: string, status: boolean): Operator|null{
   try {
     const operator = localStorage.getItem(name);
 
     if (operator) {
       const operatorConfig = JSON.parse(operator);
-      console.log('Config ter Load');
       return operatorConfig;
     } else {
       console.log('Configurations not found. Added default configuration ');
