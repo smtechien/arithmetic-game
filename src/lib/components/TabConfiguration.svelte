@@ -3,6 +3,7 @@
 	import TabButtonList from './TabButtonList.svelte';
 	import FormConfigOperator from './FormConfigOperator.svelte';
 	import Button from './Button.svelte';
+	import Alert from './Alert.svelte';
 	import type { Operator } from '$lib/types/operator';
 	import { getConfig } from '$lib/utils/localStorageConfig';
 
@@ -11,6 +12,7 @@
 	let tabTitle: string = $state('Addition Operator');
 	let submitted = $state(false); // role as key to refresh
 	let operator = $derived(getConfig(tabSelection, submitted));
+	let alertVisibility = $state(false);
 
 	function tabSelect(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
 		const id = event.currentTarget.id;
@@ -37,13 +39,16 @@
 	function closeConfig() {
 		isConfig = false;
 	}
-
-	function openConfig() {
-		isConfig = true;
-	}
 </script>
 
 {#snippet form(operator: Operator)}
+	<Alert
+		type="success"
+		title="Configuration Updated"
+		content="Your changes have been successfully applied"
+		bind:isVisible={alertVisibility}
+		withInterval={true}
+	/>
 	<FormConfigOperator
 		title={tabTitle}
 		operatorName={operator.name}
@@ -59,6 +64,7 @@
 			try {
 				// everytime the variable's value changed, it means configuration successfully updated
 				submitted = !submitted;
+				alertVisibility = true;
 			} catch (err) {
 				console.log(err);
 			}
