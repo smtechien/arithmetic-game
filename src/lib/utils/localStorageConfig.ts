@@ -7,10 +7,12 @@ export function setConfig(operator:Operator):void {
 }
 
 export function setDefaultConfig():void {
-  localStorage.setItem(addOperator.name, JSON.stringify(addOperator));
-  localStorage.setItem(subtractOperator.name, JSON.stringify(subtractOperator));
-  localStorage.setItem(multiplyOperator.name, JSON.stringify(multiplyOperator));
-  localStorage.setItem(divideOperator.name, JSON.stringify(divideOperator));
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(addOperator.name, JSON.stringify(addOperator));
+    localStorage.setItem(subtractOperator.name, JSON.stringify(subtractOperator));
+    localStorage.setItem(multiplyOperator.name, JSON.stringify(multiplyOperator));
+    localStorage.setItem(divideOperator.name, JSON.stringify(divideOperator));
+  }
 }
 
 export function getAllConfig():Operator[]{

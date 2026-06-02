@@ -17,6 +17,12 @@
 	.btn-primary {
 		background-color: var(--color-blue-800);
 	}
+	.btn-primary:disabled,
+	.btn-primary:hover:disabled,
+	.btn-primary:active:disabled {
+		background-color: var(--color-blue-400);
+	}
+
 	.btn-primary:hover {
 		background-color: var(--color-blue-700);
 	}
