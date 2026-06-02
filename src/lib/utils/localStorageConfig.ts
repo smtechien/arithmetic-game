@@ -26,8 +26,8 @@ export function getAllConfig():Operator[]{
       const multiplyConfig= JSON.parse(multiply);
       const divideConfig = JSON.parse(divide);
 
-      const activeOperator = [addConfig, subtractConfig, multiplyConfig, divideConfig];
-      return activeOperator;
+      const allOperators = [addConfig, subtractConfig, multiplyConfig, divideConfig];
+      return allOperators;
     } else {
       setDefaultConfig();
       return activeOperator;
@@ -52,6 +52,17 @@ export function getConfig(name: string, status: boolean): Operator|null{
     }
   } catch(error) {
     console.log('Configurations not found. Added default configuration ');
+    return null;
+  }
+}
+
+export function getActiveOperator(): Operator[] | null {
+  try {
+    const operators = getAllConfig(); 
+    const activeOperators = operators.filter(operator => operator.isActive);
+    return activeOperators;
+  } catch (error) {
+    console.log(error)
     return null;
   }
 }

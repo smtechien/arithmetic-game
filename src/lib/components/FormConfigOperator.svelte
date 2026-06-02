@@ -2,12 +2,13 @@
 	import FormConfigOperand from './FormConfigOperand.svelte';
 	import Button from './Button.svelte';
 	import type { Operator } from '$lib/types/operator';
-	import { setConfig, getConfig } from '$lib/utils/localStorageConfig';
+	import { setConfig } from '$lib/utils/localStorageConfig';
 
 	let {
 		title,
 		operatorName,
 		operatorSymbol,
+		operatorActive,
 		firstRuleMin,
 		firstRuleMax,
 		firstRuleNeg,
@@ -43,7 +44,8 @@
 				max: data.maxSecond,
 				min: data.minSecond,
 				negativeNumber: data.negSecond
-			}
+			},
+			isActive: operatorActive
 		};
 
 		try {

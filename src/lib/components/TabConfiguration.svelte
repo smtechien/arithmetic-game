@@ -48,6 +48,7 @@
 		title={tabTitle}
 		operatorName={operator.name}
 		operatorSymbol={operator.symbol}
+		operatorActive={operator.isActive}
 		firstRuleMin={operator.firstOperandRules.min}
 		firstRuleMax={operator.firstOperandRules.max}
 		firstRuleNeg={operator.firstOperandRules.negativeNumber}

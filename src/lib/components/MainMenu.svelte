@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from './Button.svelte';
+	import ChooseOperators from './ChooseOperators.svelte';
 
 	interface Props {
 		isSession: boolean;
@@ -9,12 +10,13 @@
 </script>
 
 <div class="flex min-h-screen flex-col justify-center gap-2 p-4">
-	<h1 class="text-4xl font-light" style="text-align: center;">ARITHMETIC</h1>
+	<h1 class="mb-2 border-b-1 pb-2 text-4xl font-light" style="text-align: center;">ARITHMETIC</h1>
+	<ChooseOperators />
 	<Button
 		type="button"
 		variant="primary"
 		value="startGame"
-		content="Start Game"
+		content="Start"
 		onclick={() => {
 			isSession = true;
 		}}

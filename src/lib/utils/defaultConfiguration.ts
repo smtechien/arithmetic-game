@@ -12,7 +12,8 @@ export const addOperator: Operator = {
     max: 10,
     min: 0,
     negativeNumber: 'active',
-  }
+  },
+  isActive: true,
 };
 
 export const subtractOperator: Operator = {
@@ -28,6 +29,7 @@ export const subtractOperator: Operator = {
     min: 0,
     negativeNumber: 'active',
   },
+  isActive: true,
 };
 
 export const multiplyOperator: Operator = {
@@ -42,7 +44,8 @@ export const multiplyOperator: Operator = {
     max: 10,
     min: 0,
     negativeNumber: 'active',
-  }
+  },
+  isActive: true,
 };
 
 export const divideOperator: Operator = {
@@ -57,7 +60,8 @@ export const divideOperator: Operator = {
     max: 10,
     min: 1,
     negativeNumber: 'active',
-  }
+  },
+  isActive: true,
  }
 
 export const activeOperator: Operator[] = [addOperator, subtractOperator, multiplyOperator, divideOperator];

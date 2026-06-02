@@ -26,7 +26,7 @@
 		type="button"
 		value="endSession"
 		variant="text"
-		content="End Session"
+		content="&cross; Quit"
 		onclick={() => {
 			isSession = false;
 		}}

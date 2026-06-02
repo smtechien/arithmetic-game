@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Operand from '$lib/components/Operand.svelte';
 	import Operator from '$lib/components/Operator.svelte';
-	import { getAllConfig } from '$lib/utils/localStorageConfig';
+	import { getActiveOperator } from '$lib/utils/localStorageConfig';
 	import { generateQuestion } from '$lib/utils/generateQuestion';
 	import { generateOperator } from '$lib/utils/generateOperator';
 
@@ -13,7 +13,7 @@
 	let operator = $state('&times;');
 
 	$effect(() => {
-		const activeOperator = getAllConfig();
+		const activeOperator = getActiveOperator();
 		if (activeOperator) {
 			const randomOperator = generateOperator(activeOperator);
 			const question = generateQuestion(randomOperator);

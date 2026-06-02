@@ -6,4 +6,5 @@ export interface Operator {
   symbol: OperatorSymbol;
   firstOperandRules: OperandRules,
   secondOperandRules: OperandRules,
+  isActive: boolean,
 }

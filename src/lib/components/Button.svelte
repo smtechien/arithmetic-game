@@ -3,7 +3,7 @@
 </script>
 
 <button class="btn btn-{variant} px-4 py-2 text-gray-200" {type} {value} {onclick} {disabled}
-	>{content}</button
+	>{@html content}</button
 >
 
 <style>
