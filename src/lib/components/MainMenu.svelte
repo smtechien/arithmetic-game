@@ -11,7 +11,7 @@
 	let isOperator: boolean = $state(false);
 </script>
 
-<div class="flex min-h-screen flex-col justify-center gap-2 p-4">
+<div class="flex min-h-dvh flex-col justify-center gap-2 p-4">
 	<h1 class="mb-2 border-b-1 pb-2 text-4xl font-light" style="text-align: center;">ARITHMETIC</h1>
 	<ChooseOperators bind:isOperator />
 	<Button

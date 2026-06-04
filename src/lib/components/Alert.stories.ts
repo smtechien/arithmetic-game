@@ -21,6 +21,7 @@ export const Basic: Story = {
       title: 'Alert Title',
       content: 'alert content',
       withInterval: false,
+      isVisible: true,
     }
 };
 
@@ -34,5 +35,6 @@ export const Success: Story = {
       title: 'Configuration Updated',
       content: 'Your changes have been successfully applied',
       withInterval: true,
+      isVisible: true,
     }
 };

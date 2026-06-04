@@ -3,7 +3,7 @@ import type { Preview } from '@storybook/sveltekit'
 
 const preview: Preview = {
   parameters: {
-    //layout: 'fullsreen', // untuk menghilangkan auto padding
+    layout: 'fullsreen', // untuk menghilangkan auto padding
     controls: {
       matchers: {
        color: /(background|color)$/i,

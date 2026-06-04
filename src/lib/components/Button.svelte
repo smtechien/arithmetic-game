@@ -1,9 +1,13 @@
 <script lang="ts">
-	let { type, value, onclick, variant, content, disabled = false } = $props();
+	let { type, value, onclick, variant, content, disabled = false, style = '' } = $props();
 </script>
 
-<button class="btn btn-{variant} px-4 py-2 text-gray-200" {type} {value} {onclick} {disabled}
-	>{@html content}</button
+<button
+	class="btn btn-{variant} px-4 py-2 text-gray-200 {style}"
+	{type}
+	{value}
+	{onclick}
+	{disabled}>{@html content}</button
 >
 
 <style>
@@ -58,7 +62,7 @@
 		color: var(--color-gray-600);
 	}
 	.btn-text:active {
-		color: var(--color-gray-400);
+		background-color: var(--color-blue-400);
 	}
 
 	.btn-disabled {

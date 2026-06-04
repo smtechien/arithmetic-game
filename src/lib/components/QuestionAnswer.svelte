@@ -33,7 +33,7 @@
 	/>
 </div>
 {#key genQuestion}
-	<div class="flex min-h-screen flex-col items-center justify-center gap-5">
+	<div class="grid min-h-dvh grid-cols-1 grid-rows-1 p-4">
 		<Question bind:answer />
 		<Answer {answer} onAnswer={handleAnswerResult} />
 	</div>

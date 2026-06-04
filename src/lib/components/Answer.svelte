@@ -1,6 +1,8 @@
 <script lang="ts">
+	import Keypad from './Keypad.svelte';
+
 	let { answer, onAnswer } = $props();
-	let value = $state();
+	let value = $state('');
 	let correct = $state(false);
 	let inputDOM = $state<HTMLInputElement | null>(null);
 
@@ -15,7 +17,9 @@
 	}
 
 	function checkAnswer(event: Event): void {
-		event.preventDefault();
+		if (event) {
+			event.preventDefault();
+		}
 		// if correct answer
 		if (value == answer) {
 			correct = true;
@@ -31,14 +35,16 @@
 	}
 </script>
 
-<form onsubmit={checkAnswer}>
+<form class="py-2" onsubmit={checkAnswer}>
 	<input
-		class="border-0 border-b-2 focus:border-blue-500 focus:ring-0 focus:outline-0"
+		class="w-full border-0 border-b-2 text-3xl focus:border-blue-500 focus:ring-0 focus:outline-0"
 		id="answer"
 		type="number"
 		bind:value
 		bind:this={inputDOM}
-		placeholder="Answer Here!"
+		placeholder="Answer"
 		use:focusOnAnswerField
+		disabled={true}
 	/>
 </form>
+<Keypad bind:value onSubmit={checkAnswer} />

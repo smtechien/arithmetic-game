@@ -28,7 +28,7 @@
 	});
 </script>
 
-<div class="basis-full text-5xl">
+<div class="flex w-full flex-row items-center justify-center text-5xl">
 	<Operand operand={firstOperand} turns={turn} />
 	<Operator {operator} turns={turn} />
 	<Operand operand={secondOperand} turns={turn} />

@@ -1,19 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/sveltekit';
-import Answer from './Answer.svelte';
+import Keypad from './Keypad.svelte';
 
 const meta = {
-  title: 'Organisms/Answer',
-  component: Answer,
+  title: 'Molecules/Keypad',
+  component: Keypad,
   decorators: [],
   parameters: {},
-} satisfies Meta<typeof Answer>;
+} satisfies Meta<typeof Keypad>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   render: (args) => ({
-    Component: Answer, 
+    Component: Keypad,
     props: args,
   }),
+  args: {
+    value: ' ',
+  }
 };
