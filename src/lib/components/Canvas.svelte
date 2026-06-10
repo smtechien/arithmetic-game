@@ -1,0 +1,84 @@
+<script lang="ts">
+	let canvas: HTMLCanvasElement | null = $state(null);
+	let context: CanvasRenderingContext2D | null = $state(null);
+	let isDrawing: boolean = $state(false);
+
+	let start: { x: number; y: number } | null = $state(null);
+
+	let l: number = $state(0);
+	let t: number = $state(0);
+
+	// window //
+	let windowHeight: number = $state(0);
+	let windowWidth: number = $state(0);
+
+	type eventMouse = (event: PointerEvent) => void;
+	interface Props {
+		isScribble: boolean;
+	}
+
+	let { isScribble = $bindable() }: Props = $props();
+
+	$effect(() => {
+		if (canvas) {
+			context = canvas.getContext('2d');
+			if (context) {
+				context.lineWidth = 2;
+				context.lineCap = 'round';
+				context.lineJoin = 'round';
+				context.strokeStyle = 'red';
+			}
+		}
+		handleSize();
+	});
+
+	const handleSize = () => {
+		if (canvas) {
+			const { top, left } = canvas?.getBoundingClientRect();
+			t = top;
+			l = left;
+		}
+	};
+
+	const drawStart: eventMouse = ({ offsetX: x, offsetY: y }): void => {
+		isDrawing = true;
+		start = { x, y };
+	};
+
+	const drawEnd = () => {
+		isDrawing = false;
+	};
+
+	const drawPoint: eventMouse = ({ offsetX: x1, offsetY: y1 }): void => {
+		if (!isDrawing) return;
+		if (start) {
+			const { x, y } = start;
+			context?.beginPath();
+			context?.moveTo(x, y);
+			context?.lineTo(x1, y1);
+			context?.closePath();
+			context?.stroke();
+		}
+		start = { x: x1, y: y1 };
+	};
+</script>
+
+<svelte:window
+	bind:innerWidth={windowWidth}
+	bind:innerHeight={windowHeight}
+	on:resize={handleSize}
+/>
+
+<canvas
+	class="fixed top-0 left-0 touch-none"
+	class:pointer-events-none={!isScribble}
+	width={windowWidth}
+	height={windowHeight}
+	bind:this={canvas}
+	onpointerdown={drawStart}
+	onpointermove={drawPoint}
+	onpointerup={drawEnd}
+	onpointerleave={drawEnd}
+>
+	coret-coret
+</canvas>
