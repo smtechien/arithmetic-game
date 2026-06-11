@@ -4,6 +4,8 @@
 	import FormConfigOperator from './FormConfigOperator.svelte';
 	import Button from './Button.svelte';
 	import Alert from './Alert.svelte';
+	import X from '@lucide/svelte/icons/x';
+
 	import type { Operator } from '$lib/types/operator';
 	import { getConfig } from '$lib/utils/localStorageConfig';
 
@@ -41,6 +43,10 @@
 	}
 </script>
 
+{#snippet cross()}
+	<X size={16} strokeWidth={1.5} />
+{/snippet}
+
 {#snippet form(operator: Operator)}
 	<Alert
 		type="success"
@@ -77,7 +83,14 @@
 	<div class=" z-10 m-0 flex h-dvh flex-col gap-2 p-4">
 		<div class="flex flex-row justify-between">
 			<h1 class="py-2 text-lg font-bold">Configurations</h1>
-			<Button type="button" value="close" variant="text" content="&cross; " onclick={closeConfig} />
+			<Button
+				type="button"
+				value="close"
+				variant="text"
+				content=""
+				icon={cross}
+				onclick={closeConfig}
+			/>
 		</div>
 		<TabButtonList bind:tabSelection eventHandler={tabSelect} />
 		{#key operator}

@@ -1,5 +1,14 @@
 <script lang="ts">
-	let { type, value, onclick, variant, content, disabled = false, style = '' } = $props();
+	let {
+		type,
+		value,
+		onclick,
+		variant,
+		content,
+		disabled = false,
+		style = '',
+		icon = null
+	} = $props();
 </script>
 
 <button
@@ -7,8 +16,11 @@
 	{type}
 	{value}
 	{onclick}
-	{disabled}>{@html content}</button
+	{disabled}
 >
+	{#if icon}{@render icon()}{/if}
+	{@html content}
+</button>
 
 <style>
 	.btn {
@@ -63,6 +75,12 @@
 	}
 	.btn-text:active {
 		background-color: var(--color-blue-400);
+	}
+
+	.btn-text:disabled {
+		background-color: var(--color-gray-200);
+		border-color: var(--color-gray-200);
+		color: var(--color-gray-400);
 	}
 
 	.btn-disabled {

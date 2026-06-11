@@ -17,8 +17,10 @@
 	});
 </script>
 
-{#if turns}
-	{@html operators}
-{:else}
-	{@html operator}
-{/if}
+<span class="p-2">
+	{#if turns}
+		{@html operators}
+	{:else}
+		{@html operator}
+	{/if}
+</span>

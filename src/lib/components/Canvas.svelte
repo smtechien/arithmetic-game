@@ -14,10 +14,11 @@
 
 	type eventMouse = (event: PointerEvent) => void;
 	interface Props {
+		isEraser: boolean;
 		isScribble: boolean;
 	}
 
-	let { isScribble = $bindable() }: Props = $props();
+	let { isScribble = $bindable(), isEraser = $bindable() }: Props = $props();
 
 	$effect(() => {
 		if (canvas) {
@@ -42,6 +43,15 @@
 
 	const drawStart: eventMouse = ({ offsetX: x, offsetY: y }): void => {
 		isDrawing = true;
+		if (context) {
+			if (isEraser) {
+				context.globalCompositeOperation = 'destination-out';
+				context.lineWidth = 44;
+			} else {
+				context.globalCompositeOperation = 'source-over';
+				context.lineWidth = 2;
+			}
+		}
 		start = { x, y };
 	};
 
@@ -71,7 +81,7 @@
 
 <canvas
 	class="fixed top-0 left-0 touch-none"
-	class:pointer-events-none={!isScribble}
+	class:pointer-events-none={!isScribble && !isEraser}
 	width={windowWidth}
 	height={windowHeight}
 	bind:this={canvas}
