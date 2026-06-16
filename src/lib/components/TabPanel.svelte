@@ -2,6 +2,6 @@
 	let { form, operator = $bindable() } = $props();
 </script>
 
-<div class="overflow-y-auto border-1">
+<div class="overflow-y-auto border">
 	{@render form(operator)}
 </div>

@@ -6,8 +6,37 @@ export function setStartTime(startTime: number): void {
   sessionStorage.setItem('start_time', startTime.toString());
 }
 
+export function getStartTime(): null | number {
+  try {
+    const startTime = sessionStorage.getItem('start_time');
+    if (startTime) {
+      return Number(startTime);
+    }
+
+    return null;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}
+
+
 export function setEndTime(endTime: number): void {
   sessionStorage.setItem('end_time', endTime.toString());
+}
+
+export function getEndTime(): null | number {
+  try {
+    const endTime = sessionStorage.getItem('end_time');
+    if (endTime) {
+      return Number(endTime);
+    }
+
+    return null;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 }
 
 function checkQuestionAnswerLength(): boolean {
@@ -89,6 +118,26 @@ export function setAnswerDuration(id: number, duration: number) {
   }
 }
 
+export function getResults(): Result | null {
+  try {
+    if (checkQuestionAnswerLength()) {
+      const startTime = getStartTime();
+      const endTime = getEndTime();
+      const records = getQuestionAnswer();
+      if (startTime && endTime && records) {
+        const results: Result = { startTime, endTime, records };
+        return results;
+      }
+      return null;
+    }
+    return null
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}
+
+
 export function clearRecords(): void {
   try {
     if (checkQuestionAnswerLength()) {
@@ -99,9 +148,5 @@ export function clearRecords(): void {
   } catch (err) {
     console.log(err);
   }
-}
-
-export function getGame() {
-
 }
 
