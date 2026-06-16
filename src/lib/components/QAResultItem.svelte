@@ -26,7 +26,7 @@
 </script>
 
 <div class="flex flex-col gap-2">
-	<div class=" text-lg font-bold">
+	<div class="text-lg font-bold">
 		Q{id}
 	</div>
 	<div class="flex w-full flex-col gap-2 border p-2">

@@ -18,9 +18,6 @@
 			endTime = results.endTime;
 			questionAnswers = results.records.slice(0, -1);
 
-			console.log(endTime);
-			console.log(startTime);
-
 			// time formatting
 			const timeSpent: number = endTime - startTime;
 			const centiseconds = Math.floor((timeSpent % 1000) / 10);
@@ -36,16 +33,16 @@
 			const hoursString = hours > 0 ? `${hours}h ` : '';
 
 			timeSpentString = `${hoursString}${minutesString}${secondsString}${centisecondsString}`;
-			console.log(timeSpent);
-			console.log(timeSpentString);
 		}
 	});
 </script>
 
-<div class=" z-10 m-0 flex h-dvh flex-col gap-2">
-	<div class="flex h-dvh flex-col gap-2 border p-4">
-		<h1 class="text-2xl">Game Review</h1>
-		<div>time spent: {timeSpentString}</div>
+<div class="z-10 m-0 flex h-dvh flex-col gap-2">
+	<div class="flex h-dvh flex-col gap-2 p-4">
+		<div>
+			<h1 class="text-lg font-bold">Game Review</h1>
+			<div class="text-sm">time spent: {timeSpentString}</div>
+		</div>
 		<div class="flex flex-col gap-2 overflow-y-auto border p-2">
 			{#each questionAnswers as qaItem}
 				<QAResultItem

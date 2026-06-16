@@ -80,7 +80,7 @@
 
 <!--render snippet-->
 {#if isConfig}
-	<div class=" z-10 m-0 flex h-dvh flex-col gap-2 p-4">
+	<div class="z-10 m-0 flex h-dvh flex-col gap-2 p-4">
 		<div class="flex flex-row justify-between">
 			<h1 class="py-2 text-lg font-bold">Configurations</h1>
 			<Button

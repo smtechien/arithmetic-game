@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { setStartTime, setEndTime } from '$lib/utils/recordGame';
+	import {
+		setStartTime,
+		setEndTime,
+		getQuestionAnswerLength,
+		clearRecords
+	} from '$lib/utils/recordGame';
 	import Question from '$lib/components/Question.svelte';
 	import QAResults from '$lib/components/QAResults.svelte';
 	import Answer from './Answer.svelte';
@@ -110,9 +115,15 @@
 			content=""
 			icon={cross}
 			onclick={() => {
-				const endTime: number = Date.now();
-				setEndTime(endTime);
-				isResult = true;
+				const recordsLength = getQuestionAnswerLength();
+				if (recordsLength > 1) {
+					const endTime: number = Date.now();
+					setEndTime(endTime);
+					isResult = true;
+				} else {
+					clearRecords();
+					isSession = false;
+				}
 			}}
 		/>
 	</div>

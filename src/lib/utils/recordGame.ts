@@ -55,6 +55,19 @@ function checkQuestionAnswerLength(): boolean {
   }
 }
 
+export function getQuestionAnswerLength(): number {
+  try {
+    const questionAnswerStorage = sessionStorage.getItem('question_answer');
+    if (questionAnswerStorage) {
+      const questionAnswerStorageObject = JSON.parse(questionAnswerStorage);
+      return questionAnswerStorageObject.length;
+    }
+    return 0;
+  } catch (err) {
+    console.log(err);
+    return 0;
+  }
+}
 export function getQuestionAnswer(): QuestionAnswer[] | null {
   try {
     const questionAnswerStorage = sessionStorage.getItem('question_answer');
