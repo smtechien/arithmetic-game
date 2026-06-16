@@ -1,12 +1,16 @@
 <script lang="ts">
+	import { setAnswer, setAnswerDuration } from '$lib/utils/recordGame';
 	import Keypad from './Keypad.svelte';
 
-	let { answer, onAnswer } = $props();
+	let { answer, onAnswer, questionNumber } = $props();
+	let startTime: number = $state(0);
+	let correctTime: number = $state(0);
 	let value = $state('');
 	let correct = $state(false);
 	let inputDOM = $state<HTMLInputElement | null>(null);
 
 	$effect(() => {
+		startTime = Date.now();
 		correct = false;
 	});
 
@@ -21,7 +25,10 @@
 			event.preventDefault();
 		}
 		// if correct answer
+		setAnswer(questionNumber, Number(value));
 		if (value == answer) {
+			correctTime = Date.now() - startTime;
+			setAnswerDuration(questionNumber, correctTime);
 			correct = true;
 		}
 

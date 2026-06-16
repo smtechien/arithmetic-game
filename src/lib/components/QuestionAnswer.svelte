@@ -1,16 +1,19 @@
 <script lang="ts">
+	import { setStartTime, setEndTime, clearRecords } from '$lib/utils/recordGame';
 	import Question from '$lib/components/Question.svelte';
 	import Answer from './Answer.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Canvas from './Canvas.svelte';
+	import Timer from './Timer.svelte';
 	import Pencil from '@lucide/svelte/icons/pencil';
 	import PencilOff from '@lucide/svelte/icons/pencil-off';
 	import BrushCleaning from '@lucide/svelte/icons/brush-cleaning';
 	import Eraser from '@lucide/svelte/icons/eraser';
 	import X from '@lucide/svelte/icons/x';
 
-	let genQuestion = $state();
+	let genQuestion: boolean = $state(false);
 	let answer = $state(0);
+	let questionNumber: number = $state(1);
 
 	// canvas
 	let isScribble: boolean = $state(false);
@@ -27,10 +30,21 @@
 		correctness = result;
 		if (result) {
 			genQuestion = !genQuestion;
+			questionNumber += 1;
 		}
 
 		feedbackVisibility = true;
 	}
+
+	$effect(() => {
+		const startTime = Date.now();
+		setStartTime(startTime);
+
+		return () => {
+			const endTime: number = Date.now();
+			setEndTime(endTime);
+		};
+	});
 </script>
 
 {#snippet pencilOn()}
@@ -50,6 +64,7 @@
 {/snippet}
 
 <div class="fixed top-4 right-4 z-50 flex gap-2">
+	<Timer />
 	<Button
 		type="button"
 		value="startScribble"
@@ -95,6 +110,7 @@
 		content=""
 		icon={cross}
 		onclick={() => {
+			clearRecords(); // sementara hapus setelah selesai sesi
 			isSession = false;
 		}}
 	/>
@@ -104,7 +120,7 @@
 		<Canvas bind:isScribble bind:isEraser />
 	{/key}
 	<div class="grid min-h-dvh grid-cols-1 grid-rows-1 p-4">
-		<Question bind:answer />
-		<Answer {answer} onAnswer={handleAnswerResult} />
+		<Question bind:answer {questionNumber} />
+		<Answer {answer} onAnswer={handleAnswerResult} {questionNumber} />
 	</div>
 {/key}

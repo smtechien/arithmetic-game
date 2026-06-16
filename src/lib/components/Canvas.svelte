@@ -80,7 +80,10 @@
 />
 
 <canvas
+	id="canvas"
 	class="fixed top-0 left-0 touch-none"
+	class:cursor-crosshair={isScribble}
+	class:customCursor={isEraser}
 	class:pointer-events-none={!isScribble && !isEraser}
 	width={windowWidth}
 	height={windowHeight}
@@ -92,3 +95,13 @@
 >
 	coret-coret
 </canvas>
+
+<style>
+	.customCursor {
+		/* Syntax: url('path/to/image.svg') <x-hotspot> <y-hotspot>, fallback */
+		cursor:
+			url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="black" stroke-width="1"/></svg>')
+				22 22,
+			auto;
+	}
+</style>

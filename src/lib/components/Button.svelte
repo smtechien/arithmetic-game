@@ -12,7 +12,7 @@
 </script>
 
 <button
-	class="btn btn-{variant} px-4 py-2 text-gray-200 {style}"
+	class="btn btn-{variant} px-4 py-2 text-gray-200 {style} cursor-pointer"
 	{type}
 	{value}
 	{onclick}

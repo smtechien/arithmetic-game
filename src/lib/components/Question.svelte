@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Operand from '$lib/components/Operand.svelte';
 	import Operator from '$lib/components/Operator.svelte';
+	import { setQuestion } from '$lib/utils/recordGame';
 	import { getActiveOperator } from '$lib/utils/localStorageConfig';
 	import { generateQuestion } from '$lib/utils/generateQuestion';
 	import { generateOperator } from '$lib/utils/generateOperator';
 
 	let turn = $state(true);
-	let { answer = $bindable() } = $props();
+	let { answer = $bindable(), questionNumber } = $props();
 
 	let firstOperand = $state(0);
 	let secondOperand = $state(0);
@@ -18,6 +19,11 @@
 			const randomOperator = generateOperator(activeOperator);
 			const question = generateQuestion(randomOperator);
 			({ firstOperand, secondOperand, operator, answer } = question);
+
+			if (question) {
+				setQuestion(questionNumber, question);
+			}
+
 			const turnInterval = setInterval(() => {
 				turn = false;
 			}, 300);
